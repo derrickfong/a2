@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+    <!-- Link to External CSS -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
+
+    <title>Australia Weather Analysis</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>Australia's Weather Analysis Dashboard</h1>
+    </header>
+
+    <main>
+        <!-- Global Filters Section -->
+        <section class="filters">
+            <div class="filter-container">
+                <label for="location">Select Location:</label>
+                <select id="location" onchange="updateVisualizations()">
+                    <option value="Albury">Albury</option>
+                    <option value="BadgerysCreek">BadgerysCreek</option>
+                    <option value="Cobar">Cobar</option>
+                    <option value="CoffsHarbour">CoffsHarbour</option>
+                    <option value="Moree">Moree</option>
+                    <option value="Newcastle">Newcastle</option>
+                    <option value="NorahHead">NorahHead</option>
+                    <option value="NorfolkIsland">NorfolkIsland</option>
+                    <option value="Penrith">Penrith</option>
+                    <option value="Richmond">Richmond</option>
+                    <option value="Sydney">Sydney</option>
+                    <option value="SydneyAirport">SydneyAirport</option>
+                    <option value="WaggaWagga">WaggaWagga</option>
+                    <option value="Williamtown">Williamtown</option>
+                    <option value="Wollongong">Wollongong</option>
+                    <option value="Canberra">Canberra</option>
+                    <option value="Tuggeranong">Tuggeranong</option>
+                    <option value="MountGinini">MountGinini</option>
+                    <option value="Ballarat">Ballarat</option>
+                    <option value="Bendigo">Bendigo</option>
+                    <option value="Sale">Sale</option>
+                    <option value="Melbourne">Melbourne</option>
+                    <option value="Mildura">Mildura</option>
+                    <option value="Portland">Portland</option>
+                    <option value="Watsonia">Watsonia</option>
+                    <option value="Dartmoor">Dartmoor</option>
+                    <option value="Brisbane">Brisbane</option>
+                    <option value="Cairns">Cairns</option>
+                    <option value="GoldCoast">GoldCoast</option>
+                    <option value="Townsville">Townsville</option>
+                    <option value="Adelaide">Adelaide</option>
+                    <option value="MountGambier">MountGambier</option>
+                    <option value="Nuriootpa">Nuriootpa</option>
+                    <option value="Woomera">Woomera</option>
+                    <option value="Albany">Albany</option>
+                    <option value="Witchcliffe">Witchcliffe</option>
+                    <option value="PearceRAAF">PearceRAAF</option>
+                    <option value="PerthAirport">PerthAirport</option>
+                    <option value="Perth">Perth</option>
+                    <option value="SalmonGums">SalmonGums</option>
+                    <option value="Walpole">Walpole</option>
+                    <option value="Hobart">Hobart</option>
+                    <option value="Launceston">Launceston</option>
+                    <option value="AliceSprings">AliceSprings</option>
+                    <option value="Darwin">Darwin</option>
+                    <option value="Katherine">Katherine</option>
+                    <option value="Uluru">Uluru</option>
+                </select>
+            </div>
+
+            <div class="filter-container">
+                <label for="year">Select Year:</label>
+                <input type="range" id="year" min="2010" max="2016" value="2016" step="1" oninput="updateVisualizations()">
+                <span id="year-value">2016</span>
+            </div>
+        </section>
+
+        <!-- Precipitation Analysis Section -->
+        <h2>Precipitation Analysis</h2>
+        <section class="temp-rain-container">
+            <div id="rain1" class="viz-container"></div>
+            <div id="rain2" class="viz-container"></div>
+            <div id="rain3" class="viz-container"></div>
+            <div class="text-container">
+                <p>This section provides insights and analysis on rainfall trends.</p>
+            </div>
+        </section>
+
+        <!-- Temperature Analysis Section -->
+        <h2>Temperature Analysis</h2>
+        <section class="temp-rain-container">
+            <div id="temp1" class="viz-container"></div>
+            <div id="temp2" class="viz-container"></div>
+            <div id="temp3" class="viz-container"></div>
+            <div class="text-container">
+                <p>This section offers analysis on temperature variations and trends.</p>
+            </div>
+        </section>
+
+        <!-- Wind Analysis Section -->
+        <h2>Wind Analysis</h2>
+        <section class="wind-container">
+            <div id="wind1" class="viz-container"></div>
+            <div class="text-container">
+                <p>This section covers wind patterns and their implications.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p> Jia Ler Fong.</p>
+    </footer>
+
+    <script type="text/javascript">
+        // Function to update all visualizations based on filter selections
+        function updateVisualizations() {
+            let location = document.getElementById('location').value;
+            let year = document.getElementById('year').value;
+            document.getElementById('year-value').innerText = year;
+
+            // Embed visualizations with updated parameters
+            vegaEmbed("#rain1", "js/rain1.vg.json", {
+                "params": [{ "name": "Location_selection", "value": location }, { "name": "Year_selection", "value": year }]
+            }).catch(console.error);
+
+            vegaEmbed("#rain2", "js/rain2.vg.json", {
+                "params": [{ "name": "Location_selection", "value": location }, { "name": "Year_selection", "value": year }]
+            }).catch(console.error);
+
+            vegaEmbed("#rain3", "js/rain3.vg.json", {
+                "params": [{ "name": "Location_selection", "value": location }, { "name": "Year_selection", "value": year }]
+            }).catch(console.error);
+
+            vegaEmbed("#temp1", "js/temp1.vg.json", {
+                "params": [{ "name": "Location_selection", "value": location }, { "name": "Year_selection", "value": year }]
+            }).catch(console.error);
+
+            vegaEmbed("#temp2", "js/temp2.vg.json", {
+                "params": [{ "name": "Location_selection", "value": location }, { "name": "Year_selection", "value": year }]
+            }).catch(console.error);
+
+            vegaEmbed("#temp3", "js/temp3.vg.json", {
+                "params": [{ "name": "Location_selection", "value": location }, { "name": "Year_selection", "value": year }]
+            }).catch(console.error);
+
+            vegaEmbed("#wind1", "js/wind1.vg.json", {
+                "params": [{ "name": "Location_selection", "value": location }, { "name": "Year_selection", "value": year }]
+            }).catch(console.error);
+        }
+
+        // Initial visualization load
+        window.onload = updateVisualizations;
+
+    </script>
+
+</body>
+
+</html>

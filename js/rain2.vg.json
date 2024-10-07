@@ -1,0 +1,107 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": "container",  
+    "height": 350, 
+    "description": "Stacked bar chart with filters for location and year using data from rain_prop.csv.",
+    "title": "Percentage of Days with Rain by Month",
+    "data": {
+      "url": "data/rain_prop.csv",
+      "format": {"type": "csv"}
+    },
+    "params": [
+      {
+        "name": "Location_selection",
+        "bind": {
+          "input": "select",
+          "options": [
+            "Albury", "BadgerysCreek", "Cobar", "CoffsHarbour", "Moree",
+            "Newcastle", "NorahHead", "NorfolkIsland", "Penrith", "Richmond",
+            "Sydney", "SydneyAirport", "WaggaWagga", "Williamtown", "Wollongong",
+            "Canberra", "Tuggeranong", "MountGinini", "Ballarat", "Bendigo",
+            "Sale", "Melbourne", "Mildura", "Portland", "Watsonia", "Dartmoor",
+            "Brisbane", "Cairns", "GoldCoast", "Townsville", "Adelaide",
+            "MountGambier", "Nuriootpa", "Woomera", "Albany", "Witchcliffe",
+            "PearceRAAF", "PerthAirport", "Perth", "SalmonGums", "Walpole",
+            "Hobart", "Launceston", "AliceSprings", "Darwin", "Katherine",
+            "Uluru"
+          ],
+          "name": "Select Location: "
+        },
+        "value": "Melbourne"
+      },
+      {
+        "name": "Year_selection",
+        "bind": {
+          "input": "range",
+          "min": 2010,
+          "max": 2016,
+          "step": 1,
+          "name": "Select Year: "
+        },
+        "value": 2016
+      }
+    ],
+    "transform": [
+      {
+        "filter": "datum.Location == Location_selection"
+      },
+      {
+        "filter": "datum.Year == Year_selection"
+      }
+    ],
+    "layer": [
+      {
+        "mark": "bar",
+        "encoding": {
+          "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "scale": {
+              "domain": [
+                "January", "February", "March", "April", "May",
+                "June", "July", "August", "September", "October",
+                "November", "December"
+              ]
+            }
+          },
+          "y": {
+            "field": "Total_Percent",
+            "type": "quantitative",
+            "title": "Days with Rain (%)",
+            "scale": {"domain": [0, 100]}
+          },
+          "color": {"value": "orange"}
+        }
+      },
+      {
+        "mark": "bar",
+        "encoding": {
+          "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "scale": {
+              "domain": [
+                "January", "February", "March", "April", "May",
+                "June", "July", "August", "September", "October",
+                "November", "December"
+              ]
+            }
+          },
+          "y": {
+            "field": "Rain_Percentage",
+            "type": "quantitative",
+            "scale": {"domain": [0, 100]}
+          },
+          "color": {"value": "#1f77b4"},
+          "tooltip": [
+            {"field": "Month", "title": "Month"},
+            {"field": "Rain_Percentage", "title": "Percentage of Days with Rain", "format": ".2f"},
+            {"field": "Total_Days", "title": "Total Days"},
+            {"field": "Rainy_Days", "title": "Rainy Days"}
+          ]
+        }
+      }
+    ]
+  }
+  
