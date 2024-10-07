@@ -14,16 +14,26 @@ h1, h2 {
     color: #333;
 }
 
+.filters-container {
+    background-color: #ffffff; /* White background for filters container */
+    padding: 15px; /* Padding around the filters */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Deeper shadow for more depth */
+    margin-bottom: 20px; /* Space below the filters */
+}
+
 .filters {
     display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
+    justify-content: space-between; /* Space between filter elements */
 }
 
 .filter-container {
     display: flex;
     flex-direction: column;
+    flex: 1; /* Allow the containers to grow evenly */
+    margin: 0 10px; /* Margin between filter containers */
 }
+
 
 .viz-container {
     width: 100%; /* Full width within grid cell */
@@ -72,4 +82,22 @@ footer {
     margin-top: 20px;
     font-size: 0.9em;
     color: #777;
+    background-color: #343a40; /* Dark background for footer */
+    color: white; /* White text in footer */
+    padding: 10px; /* Padding for footer */
+    border-radius: 5px; /* Rounded corners */
+}
+
+button {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white; /* White text for buttons */
+    border: none; /* No border for buttons */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 15px; /* Padding for buttons */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
 }
