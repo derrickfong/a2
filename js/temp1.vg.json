@@ -1,32 +1,15 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": "container",  
-  "height": 350, 
-  "title": "Average Monthly Temperatures in Australian Towns and Cities (2010-2016)",
+  "width": 565,
+  "height": 350,
+  "title": {
+    "text": "Average Monthly Temperature by State",
+    "subtitle": "Hint: Select location on legend to highlight"
+  },
   "data": {
     "url": "data/temp_summary.csv"
   },
   "params": [
-    {
-      "name": "Location_selection",
-      "bind": {
-        "input": "select",
-        "options": [
-          "Albury", "BadgerysCreek", "Cobar", "CoffsHarbour", "Moree",
-          "Newcastle", "NorahHead", "NorfolkIsland", "Penrith", "Richmond",
-          "Sydney", "SydneyAirport", "WaggaWagga", "Williamtown", "Wollongong",
-          "Canberra", "Tuggeranong", "MountGinini", "Ballarat", "Bendigo",
-          "Sale", "Melbourne", "Mildura",
-          "Portland", "Watsonia", "Dartmoor", "Brisbane", "Cairns",
-          "GoldCoast", "Townsville", "Adelaide", "MountGambier", "Nuriootpa",
-          "Woomera", "Albany", "Witchcliffe", "PearceRAAF", "PerthAirport",
-          "Perth", "SalmonGums", "Walpole", "Hobart", "Launceston",
-          "AliceSprings", "Darwin", "Katherine", "Uluru"
-        ],
-        "name": "Select Location: "
-      },
-      "init": {"Location": "Melbourne"}
-    },
     {
       "name": "Year_selection",
       "bind": {
@@ -34,49 +17,78 @@
         "min": 2010,
         "max": 2016,
         "step": 1,
-        "name": "Select Year: "
+        "name": "Year: "
       },
-      "init": 2016
+      "value": 2016
+    },
+    {
+      "name": "State_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          "New South Wales",
+          "Victoria",
+          "Queensland",
+          "South Australia",
+          "Western Australia",
+          "Tasmania",
+          "Northern Territory"
+        ],
+        "name": "State: "
+      },
+      "value": "Victoria"
     }
   ],
   "transform": [
-    {"filter": "datum.Location != null"},
-    {"filter": "datum.Year == Year_selection"},
-    {"filter": "datum.Location == Location_selection"}
+    {
+      "filter": "datum.Year == Year_selection && datum.State == State_selection"
+    }
   ],
   "layer": [
     {
       "mark": "line",
+      "selection": {
+        "Location_highlight": {
+          "type": "point",
+          "fields": ["Location"],
+          "bind": "legend"
+        }
+      },
       "encoding": {
         "x": {
           "field": "Month",
           "type": "ordinal",
           "title": "Month",
-          "sort": ["January", "February", "March", "April", "May", "June",
-                   "July", "August", "September", "October", "November", "December"],
+          "sort": [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+          ],
           "axis": {
-            "labelAngle": 0
+            "labelAngle": 45
           }
         },
         "y": {
-          "field": "average_temp",
+          "field": "avg_temp",
           "type": "quantitative",
-          "title": "Average Temperature °C",
-          "scale": {
-            "domain": [0, 40]
-          }
+          "title": "Temperature (°C)"
         },
         "color": {
           "field": "Location",
           "type": "nominal",
-          "title": "Location",
-          "legend": null 
+          "scale": {
+            "range": ["#1f77b4", "#ff7f0e", "#2ca02c", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"]
+          },
+          "legend": {
+            "orient": "bottom"  
+          }
         },
-        "tooltip": [
-          {"field": "Location", "type": "nominal"},
-          {"field": "Month", "type": "ordinal", "title": "Month"},
-          {"field": "average_temp", "type": "quantitative", "title": "Average Temperature °C"}
-        ]
+        "opacity": {
+          "condition": {
+            "param": "Location_highlight",
+            "value": 1
+          },
+          "value": 0
+        }
       }
     },
     {
@@ -89,148 +101,50 @@
         "x": {
           "field": "Month",
           "type": "ordinal",
-          "sort": ["January", "February", "March", "April", "May", "June",
-                   "July", "August", "September", "October", "November", "December"],
+          "title": "Month",
+          "sort": [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+          ],
           "axis": {
-            "labelAngle": 0
+            "labelAngle": 45
           }
         },
         "y": {
-          "field": "average_temp",
+          "field": "avg_temp",
           "type": "quantitative"
         },
         "color": {
           "field": "Location",
-          "type": "nominal"
+          "type": "nominal",
+          "scale": {
+            "range": ["#1f77b4", "#ff7f0e", "#2ca02c", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"]
+          },
+          "legend": {
+            "orient": "bottom"  
+          }
+        },
+        "opacity": {
+          "condition": {
+            "param": "Location_highlight",
+            "value": 1
+          },
+          "value": 0
         },
         "tooltip": [
-          {"field": "Location", "type": "nominal"},
-          {"field": "Month", "type": "ordinal", "title": "Month"},
-          {"field": "Season", "type": "ordinal", "title": "Season"},
-          {"field": "average_temp", "type": "quantitative", "title": "Average Temperature °C", "format": ".2f"}
+          {
+            "field": "Location",
+            "type": "nominal",
+            "title": "Location"
+          },
+          {
+            "field": "avg_temp",
+            "type": "quantitative",
+            "title": "Average Temperature (°C)",
+            "format": ".2f"
+          }
         ]
       }
-    },
-    {
-      "mark": "text",
-      "encoding": {
-        "x": {
-          "field": "Month",
-          "type": "ordinal",
-          "sort": ["January", "February", "March", "April", "May", "June",
-                   "July", "August", "September", "October", "November", "December"],
-          "axis": {
-            "labelAngle": 0
-          }
-        },
-        "y": {
-          "value": 40
-        },
-        "text": {
-          "value": "Summer",
-          "condition": {
-            "test": "datum.Month == 'December'",
-            "value": "Summer"
-          }
-        }
-      },
-      "transform": [
-        {
-          "filter": "datum.Month == 'December'"
-        }
-      ]
-    },
-    {
-      "mark": "text",
-      "encoding": {
-        "x": {
-          "field": "Month",
-          "type": "ordinal",
-          "sort": ["January", "February", "March", "April", "May", "June",
-                   "July", "August", "September", "October", "November", "December"],
-          "axis": {
-            "labelAngle": 0
-          }
-        },
-        "y": {
-          "value": 40
-        },
-        "text": {
-          "value": "Autumn",
-          "condition": {
-            "test": "datum.Month == 'March'",
-            "value": "Autumn"
-          }
-        }
-      },
-      "transform": [
-        {
-          "filter": "datum.Month == 'March'"
-        }
-      ]
-    },
-    {
-      "mark": "text",
-      "encoding": {
-        "x": {
-          "field": "Month",
-          "type": "ordinal",
-          "sort": ["January", "February", "March", "April", "May", "June",
-                   "July", "August", "September", "October", "November", "December"],
-          "axis": {
-            "labelAngle": 0
-          }
-        },
-        "y": {
-          "value": 40
-        },
-        "text": {
-          "value": "Winter",
-          "condition": {
-            "test": "datum.Month == 'June'",
-            "value": "Winter"
-          }
-        }
-      },
-      "transform": [
-        {
-          "filter": "datum.Month == 'June'"
-        }
-      ]
-    },
-    {
-      "mark": "text",
-      "encoding": {
-        "x": {
-          "field": "Month",
-          "type": "ordinal",
-          "sort": ["January", "February", "March", "April", "May", "June",
-                   "July", "August", "September", "October", "November", "December"],
-          "axis": {
-            "labelAngle": 0
-          }
-        },
-        "y": {
-          "value": 40
-        },
-        "text": {
-          "value": "Spring",
-          "condition": {
-            "test": "datum.Month == 'September'",
-            "value": "Spring"
-          }
-        }
-      },
-      "transform": [
-        {
-          "filter": "datum.Month == 'September'"
-        }
-      ]
     }
-  ],
-  "config": {
-    "tooltip": {
-      "orient": "left"
-    }
-  }
+  ]
 }

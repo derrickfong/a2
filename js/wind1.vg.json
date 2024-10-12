@@ -1,93 +1,152 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": "container",  
-    "height": 350, 
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 565,
+  "height": 350,
   "title": {
-    "text": "Average Wind Gust Speed In Australian Towns And Cities From 2010 to 2016"
+    "text": "Average Monthly Wind Gust Speed by State",
+    "subtitle": "Hint: Select location on legend to highlight"
   },
-    "data": {
-      "url": "data/wind.csv",  
-      "format": {"type": "csv"}
+  "data": {
+    "url": "data/vector.csv"
+  },
+  "params": [
+    {
+      "name": "Year_selection",
+      "bind": {
+        "input": "range",
+        "min": 2010,
+        "max": 2016,
+        "step": 1,
+        "name": "Year: "
+      },
+      "value": 2016
     },
-    "params": [
-      {
-        "name": "Location_selection",
-        "bind": {
-          "input": "select",
-          "options": [
-            "Albury", "BadgerysCreek", "Cobar", "CoffsHarbour", "Moree",
-            "Newcastle", "NorahHead", "NorfolkIsland", "Penrith", "Richmond",
-            "Sydney", "SydneyAirport", "WaggaWagga", "Williamtown", "Wollongong",
-            "Canberra", "Tuggeranong", "MountGinini", "Ballarat", "Bendigo",
-            "Sale", "Melbourne", "Mildura", "Portland", "Watsonia", "Dartmoor",
-            "Brisbane", "Cairns", "GoldCoast", "Townsville", "Adelaide",
-            "MountGambier", "Nuriootpa", "Woomera", "Albany", "Witchcliffe",
-            "PearceRAAF", "PerthAirport", "Perth", "SalmonGums", "Walpole",
-            "Hobart", "Launceston", "AliceSprings", "Darwin", "Katherine",
-            "Uluru"
-          ],
-          "name": "Select Location: "
-        },
-        "value": "Melbourne"
+    {
+      "name": "State_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          "New South Wales",
+          "Victoria",
+          "Queensland",
+          "South Australia",
+          "Western Australia",
+          "Tasmania",
+          "Northern Territory"
+        ],
+        "name": "State: "
       },
-      {
-        "name": "Year_selection",
-        "bind": {
-          "input": "range",
-          "min": 2010,
-          "max": 2016,
-          "step": 1,
-          "name": "Select Year: "
-        },
-        "value": 2016
-      }
-    ],
-    "transform": [
-      {
-        "filter": "datum.Location == Location_selection"
-      },
-      {
-        "filter": "datum.Year == Year_selection"
-      }
-    ],
-    "mark": "point",
-    "encoding": {
-      "x": {
-        "field": "Month",
-        "type": "ordinal",
-        "title": "Month",
-        "scale": {
-          "domain": [
-            "January", "February", "March", "April", "May", 
-            "June", "July", "August", "September", "October", 
-            "November", "December"
-          ]
-        }
-      },
-      "y": {
-        "field": "WindGustSpeed",
-        "type": "quantitative",
-        "title": "Average Wind Gust Speed (KM)",
-        "scale": {"domain": [0, 120]},
-        "axis": {
-            "ticks": true,
-            "grid": true,
-            "labelOverlap": true,
-            "tickCount": 7 
-        }
-      },
-      "color": {
-        "field": "Location",
-        "type": "nominal",
-        "title": "Location",
-        "legend": null 
-      },
-      "tooltip": [
-        {"field": "Month", "title": "Month"},
-        {"field": "WindGustSpeed", "title": "Average Wind Gust Speed (KM)"},
-        {"field": "Location", "title": "Location"},
-        {"field": "Year", "title": "Year"}
-      ]
+      "value": "Victoria"
     }
-  }
-  
+  ],
+  "transform": [
+    {
+      "filter": "datum.Year == Year_selection && datum.State == State_selection"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "line"
+      },
+      "selection": {
+        "Location_highlight": {
+          "type": "point",
+          "fields": ["Location"],
+          "bind": "legend"
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "Month",
+          "type": "ordinal",
+          "title": "Month",
+          "sort": [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+          ],
+          "axis": {
+            "labelAngle": 45
+          }
+        },
+        "y": {
+          "field": "average_WindGustSpeed",
+          "type": "quantitative",
+          "title": "Average Monthly Wind Gust Speed (km/h)"
+        },
+        "color": {
+          "field": "Location",
+          "type": "nominal",
+          "scale": {
+            "range": ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"]
+          },
+          "legend": {
+            "orient": "bottom"  
+          }
+        },
+        "opacity": {
+          "condition": {
+            "param": "Location_highlight",
+            "value": 1
+          },
+          "value": 0
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 50
+      },
+      "encoding": {
+        "x": {
+          "field": "Month",
+          "type": "ordinal",
+          "title": "Month",
+          "sort": [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+          ],
+          "axis": {
+            "labelAngle": 45
+          }
+        },
+        "y": {
+          "field": "average_WindGustSpeed",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "Location",
+          "type": "nominal",
+          "scale": {
+            "range": ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"]
+          },
+          "legend": {
+            "orient": "bottom"  
+          }
+        },
+        "opacity": {
+          "condition": {
+            "param": "Location_highlight",
+            "value": 1
+          },
+          "value": 0
+        },
+        "tooltip": [
+          {
+            "field": "Location",
+            "type": "nominal",
+            "title": "Location"
+          },
+          {
+            "field": "average_WindGustSpeed",
+            "type": "quantitative",
+            "title": "Average Monthly Wind Gust Speed (km/h)",
+            "format": ".2f"
+          }
+        ]
+      }
+    }
+  ]
+}

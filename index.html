@@ -23,144 +23,89 @@
     </header>
 
     <main>
-        <!-- Global Filters Section -->
-        <section class="filters">
-            <div class="filter-container">
-                <label for="location">Select Location:</label>
-                <select id="location" onchange="updateVisualizations()">
-                    <option value="Albury">Albury</option>
-                    <option value="BadgerysCreek">BadgerysCreek</option>
-                    <option value="Cobar">Cobar</option>
-                    <option value="CoffsHarbour">CoffsHarbour</option>
-                    <option value="Moree">Moree</option>
-                    <option value="Newcastle">Newcastle</option>
-                    <option value="NorahHead">NorahHead</option>
-                    <option value="NorfolkIsland">NorfolkIsland</option>
-                    <option value="Penrith">Penrith</option>
-                    <option value="Richmond">Richmond</option>
-                    <option value="Sydney">Sydney</option>
-                    <option value="SydneyAirport">SydneyAirport</option>
-                    <option value="WaggaWagga">WaggaWagga</option>
-                    <option value="Williamtown">Williamtown</option>
-                    <option value="Wollongong">Wollongong</option>
-                    <option value="Canberra">Canberra</option>
-                    <option value="Tuggeranong">Tuggeranong</option>
-                    <option value="MountGinini">MountGinini</option>
-                    <option value="Ballarat">Ballarat</option>
-                    <option value="Bendigo">Bendigo</option>
-                    <option value="Sale">Sale</option>
-                    <option value="Melbourne">Melbourne</option>
-                    <option value="Mildura">Mildura</option>
-                    <option value="Portland">Portland</option>
-                    <option value="Watsonia">Watsonia</option>
-                    <option value="Dartmoor">Dartmoor</option>
-                    <option value="Brisbane">Brisbane</option>
-                    <option value="Cairns">Cairns</option>
-                    <option value="GoldCoast">GoldCoast</option>
-                    <option value="Townsville">Townsville</option>
-                    <option value="Adelaide">Adelaide</option>
-                    <option value="MountGambier">MountGambier</option>
-                    <option value="Nuriootpa">Nuriootpa</option>
-                    <option value="Woomera">Woomera</option>
-                    <option value="Albany">Albany</option>
-                    <option value="Witchcliffe">Witchcliffe</option>
-                    <option value="PearceRAAF">PearceRAAF</option>
-                    <option value="PerthAirport">PerthAirport</option>
-                    <option value="Perth">Perth</option>
-                    <option value="SalmonGums">SalmonGums</option>
-                    <option value="Walpole">Walpole</option>
-                    <option value="Hobart">Hobart</option>
-                    <option value="Launceston">Launceston</option>
-                    <option value="AliceSprings">AliceSprings</option>
-                    <option value="Darwin">Darwin</option>
-                    <option value="Katherine">Katherine</option>
-                    <option value="Uluru">Uluru</option>
-                </select>
+        <section>
+            <h2>Precipitation Analysis</h2>
+            <div class="rain-container">
+                <div class="viz-wrapper">
+                    <div id="rain1" class="viz-container"></div>
+                    <p class="text-placeholder">[Placeholder for text about the first rainfall visualization.]</p>
+                </div>
+                <div class="viz-wrapper">
+                    <div id="rain2" class="viz-container"></div>
+                    <p class="text-placeholder">[Placeholder for text about the second rainfall visualization.]</p>
+                </div>
             </div>
-
-            <div class="filter-container">
-                <label for="year">Select Year:</label>
-                <input type="range" id="year" min="2010" max="2016" value="2016" step="1" oninput="updateVisualizations()">
-                <span id="year-value">2016</span>
+            <div class="rain3-container">
+                <div class="viz-wrapper rain3">
+                    <div id="rain3" class="viz-container rain3"></div>
+                    <p class="text-placeholder">[Placeholder for text about the third rainfall visualization.]</p>
+                </div>
             </div>
         </section>
 
-        <!-- Precipitation Analysis Section -->
-        <h2>Precipitation Analysis</h2>
-        <section class="temp-rain-container">
-            <div id="rain1" class="viz-container"></div>
-            <div id="rain2" class="viz-container"></div>
-            <div id="rain3" class="viz-container"></div>
-            <div class="text-container">
-                <p>This section provides insights and analysis on rainfall trends.</p>
+        <section>
+            <h2>Temperature and Humidity Analysis</h2>
+            <div class="rain-container">
+                <div class="viz-wrapper">
+                    <div id="temp1" class="viz-container"></div>
+                    <p class="text-placeholder">[Placeholder for text about the first temperature visualization.]</p>
+                </div>
+                <div class="viz-wrapper">
+                    <div id="temp2" class="viz-container"></div>
+                    <p class="text-placeholder">[Placeholder for text about the second temperature visualization.]</p>
+                </div>
+            </div>
+            <div class="rain3-container">
+                <div class="viz-wrapper rain3">
+                    <div id="temp3" class="viz-container rain3"></div>
+                    <p class="text-placeholder">[Placeholder for text about the third temperature visualization.]</p>
+                </div>
             </div>
         </section>
 
-        <!-- Temperature Analysis Section -->
-        <h2>Temperature Analysis</h2>
-        <section class="temp-rain-container">
-            <div id="temp1" class="viz-container"></div>
-            <div id="temp2" class="viz-container"></div>
-            <div id="temp3" class="viz-container"></div>
-            <div class="text-container">
-                <p>This section offers analysis on temperature variations and trends.</p>
+        <section>
+            <h2>Wind Analysis</h2>
+            <div class="rain-container">
+                <div class="viz-wrapper">
+                    <div id="wind1" class="viz-container"></div>
+                    <p class="text-placeholder">[Placeholder for text about the first wind visualization.]</p>
+                </div>
+                <div class="viz-wrapper">
+                    <div id="wind2" class="viz-container"></div>
+                    <p class="text-placeholder">[Placeholder for text about the second wind visualization.]</p>
+                </div>
             </div>
         </section>
 
-        <!-- Wind Analysis Section -->
-        <h2>Wind Analysis</h2>
-        <section class="wind-container">
-            <div id="wind1" class="viz-container"></div>
-            <div class="text-container">
-                <p>This section covers wind patterns and their implications.</p>
+        <section>
+            <h2>Scatter Analysis</h2>
+            <div class="viz-wrapper">
+                <div id="scat1" class="viz-container"></div>
+                <p class="text-placeholder">[Placeholder for text about the scatter visualization.]</p>
             </div>
         </section>
     </main>
 
     <footer>
-        <p> Jia Ler Fong.</p>
+        <p>Jia Ler Fong.</p>
     </footer>
 
     <script type="text/javascript">
-        // Function to update all visualizations based on filter selections
+        // Function to update all visualizations
         function updateVisualizations() {
-            let location = document.getElementById('location').value;
-            let year = document.getElementById('year').value;
-            document.getElementById('year-value').innerText = year;
-
-            // Embed visualizations with updated parameters
-            vegaEmbed("#rain1", "js/rain1.vg.json", {
-                "params": [{ "name": "Location_selection", "value": location }, { "name": "Year_selection", "value": year }]
-            }).catch(console.error);
-
-            vegaEmbed("#rain2", "js/rain2.vg.json", {
-                "params": [{ "name": "Location_selection", "value": location }, { "name": "Year_selection", "value": year }]
-            }).catch(console.error);
-
-            vegaEmbed("#rain3", "js/rain3.vg.json", {
-                "params": [{ "name": "Location_selection", "value": location }, { "name": "Year_selection", "value": year }]
-            }).catch(console.error);
-
-            vegaEmbed("#temp1", "js/temp1.vg.json", {
-                "params": [{ "name": "Location_selection", "value": location }, { "name": "Year_selection", "value": year }]
-            }).catch(console.error);
-
-            vegaEmbed("#temp2", "js/temp2.vg.json", {
-                "params": [{ "name": "Location_selection", "value": location }, { "name": "Year_selection", "value": year }]
-            }).catch(console.error);
-
-            vegaEmbed("#temp3", "js/temp3.vg.json", {
-                "params": [{ "name": "Location_selection", "value": location }, { "name": "Year_selection", "value": year }]
-            }).catch(console.error);
-
-            vegaEmbed("#wind1", "js/wind1.vg.json", {
-                "params": [{ "name": "Location_selection", "value": location }, { "name": "Year_selection", "value": year }]
-            }).catch(console.error);
+            vegaEmbed("#rain1", "js/rain1.vg.json").catch(console.error);
+            vegaEmbed("#rain2", "js/rain2.vg.json").catch(console.error);
+            vegaEmbed("#rain3", "js/rain3.vg.json").catch(console.error);
+            vegaEmbed("#temp1", "js/temp1.vg.json").catch(console.error);
+            vegaEmbed("#temp2", "js/temp2.vg.json").catch(console.error);
+            vegaEmbed("#temp3", "js/temp3.vg.json").catch(console.error);
+            vegaEmbed("#wind1", "js/wind1.vg.json").catch(console.error);
+            vegaEmbed("#wind2", "js/windbox.vg.json").catch(console.error);
+            vegaEmbed("#scat1", "js/scatter.vg.json").catch(console.error);
         }
 
         // Initial visualization load
         window.onload = updateVisualizations;
-
     </script>
 
 </body>

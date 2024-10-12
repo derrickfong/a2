@@ -1,103 +1,111 @@
+/* General Body Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 20px;
-    background-color: #f4f4f4;
+    background-color: #f4fbff; /* Very light blue background for a clean look */
+    color: #003366; /* Dark blue text for readability */
 }
 
+/* Header Styles */
 header {
     text-align: center;
     margin-bottom: 20px;
 }
 
-h1, h2 {
-    color: #333;
+h1 {
+    color: #ffffff; /* White color for the main header */
+    font-size: 2.5em; /* Increased font size for emphasis */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle text shadow */
+    background-color: #5bc0de; /* Softer blue background for the title box */
+    padding: 20px; /* Padding inside the title box */
+    border-radius: 10px; /* Rounded corners for the title box */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
 }
 
-.filters-container {
-    background-color: #ffffff; /* White background for filters container */
-    padding: 15px; /* Padding around the filters */
-    border-radius: 5px; /* Rounded corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Deeper shadow for more depth */
-    margin-bottom: 20px; /* Space below the filters */
+/* Section Title Styles */
+h2 {
+    color: #003366; /* Dark blue color for section titles */
+    border-bottom: 2px solid #5bc0de; /* Underline with softer blue */
+    padding-bottom: 10px; /* Space below heading */
+    background-color: #ffffff; /* White background for the subtitle box */
+    padding: 10px; /* Padding inside the subtitle box */
+    border-radius: 8px; /* Rounded corners for the subtitle box */
+    margin-bottom: 15px; /* Space below section titles */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Light shadow for the subtitle box */
 }
 
-.filters {
-    display: flex;
-    justify-content: space-between; /* Space between filter elements */
+/* Rain Container Styles */
+.rain-container {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between visualizations */
+    margin: 10px 0; /* Space above and below */
 }
 
-.filter-container {
-    display: flex;
-    flex-direction: column;
-    flex: 1; /* Allow the containers to grow evenly */
-    margin: 0 10px; /* Margin between filter containers */
+/* Visualization Wrapper Styles */
+.viz-wrapper {
+    background-color: #f0f0f0; /* Light grey background for the connected section */
+    padding: 15px; /* Padding around the visualization and text */
+    border: 1px solid #d3d3d3; /* Light grey border for distinction */
+    border-radius: 8px; /* Rounded corners for the wrapper */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Light shadow */
+    margin-bottom: 20px; /* Space between each viz-wrapper */
 }
 
-
+/* Visualization Container Styles */
 .viz-container {
-    width: 100%; /* Full width within grid cell */
-    height: 560px; /* Height for visualizations */
-    margin: 10px 0;
-    background-color: #ffffff; /* Background color for visualization containers */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex; /* Use flexbox for centering */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    width: 100%; /* Set width for the visualization (adjust as needed) */
+    height: 560px; 
+    background-color: #ffffff; /* White background for visualizations */
+    border: 1px solid #d3d3d3; /* Light grey border for distinction */
+    border-radius: 8px; /* Rounded corners for visualizations */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Light shadow */
 }
 
-.text-container {
-    width: 100%; /* Full width within grid cell */
-    height: 560px; /* Height for visualizations */
-    margin: 10px 0;
-    background-color: #e9e9e9; /* Background color for visualization containers */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex; /* Use flexbox for centering */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+/* Placeholder Text Style */
+.text-placeholder {
+    width: 100%; /* Full width for text */
+    margin-top: 10px; /* Space between visualization and text */
+    font-size: 1.1em; /* Increased font size */
+    color: #555; /* Gray color for placeholder text */
+    text-align: center; /* Center align text */
 }
 
-
-
-.temp-rain-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-bottom: 20px;
+/* Styles for rain3 container with text */
+.rain3-container {
+    display: flex; /* Use flexbox for layout */
+    align-items: flex-start; /* Align items to the start */
+    margin: 20px 0; /* Space above and below */
 }
 
-.wind-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-bottom: 20px;
+.rain3 {
+    width: 100%; /* Adjust width for the rain3 visualization */
 }
 
+/* Text next to rain3 visualization */
+.rain3-text {
+    width: 35%; /* Set width for text next to rain3 */
+    margin-left: 20px; /* Space between viz and text */
+    font-size: 1.1em; /* Increased font size */
+    color: #555; /* Gray color for placeholder text */
+    text-align: left; /* Left align text */
+}
+
+/* Footer Styles */
 footer {
     text-align: center;
     margin-top: 20px;
     font-size: 0.9em;
-    color: #777;
-    background-color: #343a40; /* Dark background for footer */
-    color: white; /* White text in footer */
-    padding: 10px; /* Padding for footer */
-    border-radius: 5px; /* Rounded corners */
+    color: #003366; /* Dark blue for footer text */
+    border-top: 1px solid #ccc; /* Light border above footer */
+    padding-top: 10px; /* Padding for space above footer text */
 }
 
-button {
-    background-color: #007bff; /* Bootstrap primary color */
-    color: white; /* White text for buttons */
-    border: none; /* No border for buttons */
-    border-radius: 5px; /* Rounded corners */
-    padding: 10px 15px; /* Padding for buttons */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s; /* Smooth transition */
+/* Additional Container Colors */
+.viz-wrapper:nth-child(odd) {
+    background-color: #e0e0e0; /* Light grey for odd visualizations */
 }
 
-button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+.viz-wrapper:nth-child(even) {
+    background-color: #f0f0f0; /* Very light grey for even visualizations */
 }
