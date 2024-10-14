@@ -1,7 +1,7 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": 565,
-    "height": 350,
+    "height": 400,
     "title": {
         "text": "Average Monthly Rainfall by Location",
         "subtitle": "Hint: Select location on legend to highlight"
@@ -81,7 +81,7 @@
                         ]
                     },
                     "legend": {
-                        "orient": "bottom"  
+                        "orient": "top-right"  
                     }
                 },
                 "opacity": {
@@ -123,9 +123,6 @@
                         "range": [
                             "#1f77b4", "#ff7f0e", "#2ca02c", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"
                         ]
-                    },
-                    "legend": {
-                        "orient": "bottom"  
                     }
                 },
                 "opacity": {

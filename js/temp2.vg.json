@@ -3,13 +3,24 @@
   "width": "565",
   "height": 350,
   "title": {
-    "text": "Temperature Metrics by Month",
+    "text": "Temperature Fluctuations by Month",
     "subtitle": "Hint: Select to view either Max/Min Temperatures or Temperature Fluctuations"
   },
   "data": {
     "url": "data/temp_summary.csv"
   },
   "params": [
+    {
+      "name": "Year_selection",
+      "bind": {
+        "input": "range",
+        "min": 2010,
+        "max": 2016,
+        "step": 1,
+        "name": "Year: "
+      },
+      "value": 2016
+    },
     {
       "name": "Location_selection",
       "bind": {
@@ -25,17 +36,7 @@
       },
       "value": "Melbourne"
     },
-    {
-      "name": "Year_selection",
-      "bind": {
-        "input": "range",
-        "min": 2010,
-        "max": 2016,
-        "step": 1,
-        "name": "Year: "
-      },
-      "value": 2016
-    },
+  
     {
       "name": "Metric_selection",
       "bind": {
@@ -130,7 +131,7 @@
     {
       "mark": {
         "type": "line",
-        "strokeWidth": 3
+        "strokeWidth": 2.5
       },
       "encoding": {
         "y": {

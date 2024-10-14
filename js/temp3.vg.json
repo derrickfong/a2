@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
-  "height": 350,
+  "height": 380,
   "data": {
     "url": "data/triple.csv"
   },
@@ -64,14 +64,14 @@
       "title": "Humidity (%)",
       "legend": {
         "title": "Humidity (%)",
-        "orient": "bottom"
+        "orient": "right"
       }
     }
   },
   "tooltip": [
     {"field": "Location", "title": "Location"},
     {"field": "Month", "title": "Month"},
-    {"field": "average_monthly_hum", "title": "Average Humidity", "format": ".2f"},
+    {"field": "average_monthly_hum", "title": "Average Humidity", "format": ".0f"},
     {"field": "State", "title": "State"}
   ]
 }

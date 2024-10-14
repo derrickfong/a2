@@ -1,8 +1,11 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": "565",
+    "width": 565,
     "height": 400,
-    "title": "Wind Gust Speed by Season",
+    "title": {
+        "text": "Wind Gust Speed by Season",
+        "subtitle": "Hint: Hover over outliers to view when it occured"
+      },
     "data": {
       "url": "data/weather_test.csv",
       "format": {"type": "csv"}
@@ -46,7 +49,8 @@
     "encoding": {
       "x": {
         "axis": {
-              "labelAngle": 45},
+          "labelAngle": 45
+        },
         "field": "Season",
         "type": "ordinal",
         "title": "Season",
@@ -60,7 +64,13 @@
       "tooltip": [
         {"field": "Location", "title": "Location"},
         {"field": "Season", "title": "Season"},
-        {"field": "Date", "title": "Date"},
+        {
+          "field": "Date",
+          "title": "Date",
+          "type": "temporal",
+          "timeUnit": "yearmonthdate",
+          "format": "%d %B %Y"  
+        },
         {"field": "WindGustSpeed", "title": "Wind Gust Speed (km/h)"}
       ]
     },

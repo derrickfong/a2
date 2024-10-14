@@ -1,9 +1,12 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "565",
-  "height": 350,
+  "height": 400,
   "description": "Stacked bar chart with filters for location and year using data from rain_prop.csv.",
-  "title": "Percentage of Rainy Days Each Month By Location",
+  "title": {
+    "text": "Percentage of Rainy Days Each Month By Location",
+    "subtitle": "Hint: Hover over plot to view more details"
+},
   "data": {
     "url": "data/rain_prop.csv",
     "format": {"type": "csv"}
